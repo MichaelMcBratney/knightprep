@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { NavItem, RightTab } from './types';
 import { mockCards } from './mockData';
 import Sidebar from './components/Sidebar';
@@ -6,6 +6,7 @@ import Header from './components/Header';
 import CardArea from './components/CardArea';
 import RightPanel from './components/RightPanel';
 import ResizeHandle from './components/ResizeHandle';
+import OpeningsPage from './components/OpeningsPage';
 import { useResize } from './hooks/useResize';
 
 export default function App() {
@@ -36,31 +37,35 @@ export default function App() {
 
       <div className="flex flex-col flex-1 min-w-0 h-full">
         <Header />
-        <div className="flex flex-1 min-h-0 overflow-hidden">
-          <CardArea
-            card={{ ...card, id: cardIndex + 1 }}
-            cardIndex={cardIndex + 1}
-            onNext={handleNext}
-            onPrev={handlePrev}
-          />
+        {activeNav === 'Openings' ? (
+          <OpeningsPage />
+        ) : (
+          <div className="flex flex-1 min-h-0 overflow-hidden">
+            <CardArea
+              card={{ ...card, id: cardIndex + 1 }}
+              cardIndex={cardIndex + 1}
+              onNext={handleNext}
+              onPrev={handlePrev}
+            />
 
-          <ResizeHandle onMouseDown={rightPanel.onMouseDown} onDoubleClick={rightPanel.toggle} />
+            <ResizeHandle onMouseDown={rightPanel.onMouseDown} onDoubleClick={rightPanel.toggle} />
 
-          {rightPanel.collapsed && (
-            <CollapsedTab side="right" onClick={rightPanel.expand} label="Details" />
-          )}
+            {rightPanel.collapsed && (
+              <CollapsedTab side="right" onClick={rightPanel.expand} label="Details" />
+            )}
 
-          {!rightPanel.collapsed && (
-            <div style={{ width: rightPanel.width }} className="flex-shrink-0 h-full overflow-hidden">
-              <RightPanel
-                card={card}
-                activeTab={activeTab}
-                onTabChange={setActiveTab}
-                onCollapse={rightPanel.collapse}
-              />
-            </div>
-          )}
-        </div>
+            {!rightPanel.collapsed && (
+              <div style={{ width: rightPanel.width }} className="flex-shrink-0 h-full overflow-hidden">
+                <RightPanel
+                  card={card}
+                  activeTab={activeTab}
+                  onTabChange={setActiveTab}
+                  onCollapse={rightPanel.collapse}
+                />
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

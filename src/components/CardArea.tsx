@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 import { ChevronLeft, ChevronRight, Clock, Bookmark, MoreHorizontal, Lightbulb, CheckCircle2, XCircle, Eye } from 'lucide-react';
 import { FlashCard } from '../types';
 import ChessBoard from './ChessBoard';

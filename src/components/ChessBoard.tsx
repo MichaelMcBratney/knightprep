@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { BoardState } from '../types';
-import { coordsToSquare, getPieceSymbol } from '../utils/chess';
+import { getPieceSymbol } from '../utils/chess';
 
 interface ChessBoardProps {
   board: BoardState;
@@ -59,6 +59,9 @@ export default function ChessBoard({ board, highlightSquares, correctFrom, corre
                 return (
                   <div
                     key={sq}
+                    data-square={sq}
+                    role="button"
+                    aria-label={`${sq}${piece ? ` ${piece.color === 'w' ? 'white' : 'black'} ${piece.type}` : ''}`}
                     className={`relative flex items-center justify-center cursor-pointer transition-colors duration-100 ${getSquareStyle(sq, ri, fi)}`}
                     style={{ width: 50, height: 50 }}
                     onClick={() => handleSquareClick(sq)}

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Star, Zap, Play, Grid, Share2, ChevronsRight } from 'lucide-react';
 import { FlashCard, RightTab } from '../types';
 

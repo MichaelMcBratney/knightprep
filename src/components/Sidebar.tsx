@@ -1,6 +1,5 @@
-import React from 'react';
 import {
-  Home, BookOpen, Swords, Target, Layers, RotateCcw, BarChart2, Settings, ChevronRight, ChevronsLeft,
+  Home, BookOpen, Swords, Target, Layers, RotateCcw, BarChart2, Settings, ChevronRight, ChevronsLeft, type LucideIcon,
 } from 'lucide-react';
 import { NavItem } from '../types';
 import { activityData } from '../mockData';
@@ -11,7 +10,7 @@ interface SidebarProps {
   onCollapse: () => void;
 }
 
-const navItems: { name: NavItem; icon: React.FC<{ size?: number; className?: string }>; badge?: number }[] = [
+const navItems: { name: NavItem; icon: LucideIcon; badge?: number }[] = [
   { name: 'Dashboard', icon: Home },
   { name: 'Openings', icon: BookOpen },
   { name: 'Gambits', icon: Swords },
